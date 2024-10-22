@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #007BFF;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        label {
+            font-size: 1.1rem;
+            color: #555;
+            font-weight: 600;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        button {
+            padding: 15px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .short-url {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .short-url p {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .short-url a {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .short-url a:hover {
+            background-color: #218838;
+        }
+
+        .error {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+        }
+
+        .success {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 30px 15px;
+            }
+
+            .container {
+                padding: 30px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            input[type="text"], button {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            input[type="text"] {
+                font-size: 0.9rem;
+            }
+
+            button {
+                font-size: 1rem;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <% if(locals.id){ %>
+            <p> URL generated: <a href="http://localhost:8001/url/<%= id %>" target="_blank">http://localhost:8001/url<%= id %></a></p>
+        <% } %>
+        <h1>URL Shortener</h1>
+        <form method="POST" action="/url">
+            <label for="url">Enter Your Original URL</label>
+            <input type="text" name="url" id="url" placeholder="https://example.com" required>
+            <button type="submit">Generate</button>
+        </form>
+    </div>
+</body>
+
+</html>
